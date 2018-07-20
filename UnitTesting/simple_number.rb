@@ -13,4 +13,12 @@ class SimpleNumber
   def multiply(y)
     @x * y
   end
+
+  def substract(y)
+    @x - y
+  end
+
+  def divide(y)
+    @x / y
+  end
 end

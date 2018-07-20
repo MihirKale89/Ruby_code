@@ -18,4 +18,11 @@ class TestSimpleNumber < Test::Unit::TestCase
     assert_not_equal(3, SimpleNumber.new(2).add(2), "Adding doesn't work" )
   end
 
+  def test_operations
+    assert_equal(5, SimpleNumber.new(3).add(2) )
+    assert_equal(6, SimpleNumber.new(2).multiply(3) )
+    assert_equal(-1, SimpleNumber.new(2).substract(3) )
+    assert_equal(2, SimpleNumber.new(6).divide(3) )
+  end
+
 end
