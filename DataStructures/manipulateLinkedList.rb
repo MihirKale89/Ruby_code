@@ -183,6 +183,27 @@ class SinglyLinkedList
     displayLinkedList()
   end
 
+  # def sortOddEven(odd)
+  #   oddHead = @front
+  #   evenHead = @front.next
+  #   oddNode = oddHead
+  #   evenNode = evenHead
+  #   while oddNode != @rear || oddNode.next != @rear
+  #     oddNode.next = oddNode.next.next if oddNode.next.next != nil
+  #     evenNode.next = evenNode.next.next if evenNode.next.next != nil
+  #   end
+  #   if odd
+  #     oddNode.next = evenHead
+  #     @front = oddHead
+  #     @rear = evenNode
+  #   else
+  #     evenNode.next = oddHead
+  #     @front = evenHead
+  #     @rear = oddNode
+  #   end
+  #   displayLinkedList
+  # end
+
   def findAtIndexFromRear(index)
     req_index = findLength - index
     findAtIndex(req_index)
