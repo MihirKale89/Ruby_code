@@ -171,6 +171,25 @@ class SinglyLinkedList
     end
   end
 
+  def reverse_list
+    cur = @front;
+    prev = nil
+      while cur
+        nxt = cur.next
+        cur.next = prev
+
+        prev = cur
+        cur = nxt
+      end
+    @front = prev
+    temp = @front
+    while temp.next != nil
+      temp = temp.next
+    end
+    @rear = temp
+    displayLinkedList
+  end
+
   def oddEvenLinkedList(odd)
     start = odd ? 3 : 2
     length = findLength
@@ -195,11 +214,19 @@ class SinglyLinkedList
   #   if odd
   #     oddNode.next = evenHead
   #     @front = oddHead
-  #     @rear = evenNode
+  #     temp = @front
+  #     while temp.next != nil
+  #       temp = temp.next
+  #     end
+  #     @rear = temp
   #   else
   #     evenNode.next = oddHead
   #     @front = evenHead
-  #     @rear = oddNode
+  #     temp = @front
+  #     while temp.next != nil
+  #       temp = temp.next
+  #     end
+  #     @rear = temp
   #   end
   #   displayLinkedList
   # end
@@ -236,6 +263,9 @@ puts ""
 puts "------------ NOW DISPLAYING LINKED LIST SLL ------------"
 sll.displayLinkedList
 puts ""
+puts "------------ NOW REVERSING THE LINKED LIST ------------"
+sll.reverse_list
+puts ""
 puts "------------ NOW SORTING ODD ELEMENTS BEFORE EVEN ELEMENTS ------------"
 sll.oddEvenLinkedList(true)
 puts ""
@@ -254,3 +284,13 @@ sll2.displayLinkedList
 puts ""
 puts "------------ NOW SORTING EVEN ELEMENTS BEFORE ODD ELEMENTS ------------"
 sll2.oddEvenLinkedList(false)
+sll3 = SinglyLinkedList.new
+sll3.addAtRear(4)
+sll3.addAtRear(2)
+sll3.addAtRear(3)
+sll3.addAtRear(1)
+puts "------------ NOW DISPLAYING LINKED LIST SLL3 ------------"
+sll3.displayLinkedList
+puts ""
+puts "------------ NOW REVERSING THE LINKED LIST ------------"
+sll3.reverse_list

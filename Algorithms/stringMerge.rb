@@ -19,6 +19,24 @@ def mergeStrings(a, b)
   return mergeStr
 end
 
+def mergeStrings2(a, b)
+  return b if a.nil?
+  return a if b.nil?
+  len = a.length < b.length ? a.length : b.length
+  mergeStr = ""
+  (0..len-1).each do |i|
+    mergeStr += a[i]
+    mergeStr += b[i]
+  end
+  mergeStr += a[len..a.length-1] if len < a.length
+  mergeStr += b[len..b.length-1] if len < b.length
+  return mergeStr
+end
+
 p mergeStrings("abc", "def")
 p mergeStrings("abc", "defghi")
 p mergeStrings("abcxyz", "def")
+
+p mergeStrings2("abc", "def")
+p mergeStrings2("abc", "defghi")
+p mergeStrings2("abcxyz", "def")
