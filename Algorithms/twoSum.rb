@@ -29,6 +29,21 @@ class TwoSum
     end
     return result_arr
   end
+
+  def two_sum_each(nums, target)
+    uniqueElements = Hash.new
+    result_arr = Array.new
+    nums.each_with_index do |num, index|
+      if uniqueElements[target - num]
+        result_arr.push uniqueElements[target - num]
+        result_arr.push index
+        break
+      else
+        uniqueElements[num] = index
+      end
+    end
+    return result_arr
+  end
 end
 
 ts = TwoSum.new
@@ -38,3 +53,6 @@ puts ts.twoSumExists?([1,3,0,2], 3)
 p ts.two_sum([2,7,8,9], 9)
 p ts.two_sum([2,7,8,9], 15)
 p ts.two_sum([2,7,8,3], 5)
+p ts.two_sum_each([2,7,8,9], 9)
+p ts.two_sum_each([2,7,8,9], 15)
+p ts.two_sum_each([2,7,8,3], 5)

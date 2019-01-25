@@ -13,7 +13,7 @@ user_info = {
   :address => '255 King Street',
   :email => 'kale001@cougars.csusm.edu',
   :notes => 'Mighty generous person'
-}
+} 
 
 account = Account.new
 account.assign_values(user_info)

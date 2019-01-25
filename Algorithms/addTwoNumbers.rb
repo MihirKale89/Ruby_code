@@ -5,6 +5,10 @@ class ListNode
         @val = val
         @next = nil
     end
+
+    def display
+
+    end
 end
 
 # @param {ListNode} l1
@@ -12,5 +16,5 @@ end
 # @return {ListNode}
 
 def add_two_numbers(l1, l2)
-  
+
 end

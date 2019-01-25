@@ -1,0 +1,273 @@
+ Q1] How would you handle multiple databases within a single application?
+-> Information available here:
+    http://www.thegreatcodeadventure.com/managing-multiple-databases-in-a-single-rails-application/
+
+
+Q2] Rails routes resources mapping with http
+-> Resource routing allows you to quickly declare all of the common routes for a given resourceful controller.
+    Instead of declaring separate routes for your index, show, new, edit, create, update and destroy actions,
+    a resourceful route declares them in a single line of code.
+
+    2.1 Resources on the Web
+    Browsers request pages from Rails by making a request for a URL using a specific HTTP method,
+     such as GET, POST, PATCH, PUT and DELETE. Each method is a request to perform an operation on the resource.
+     A resource route maps a number of related requests to actions in a single controller.
+
+    HTTP Verb	  Path	            Controller#Action	  Used for
+    GET	        /photos	          photos#index	      display a list of all photos
+    GET	        /photos/new	      photos#new	        return an HTML form for creating a new photo
+    POST	      /photos	          photos#create	      create a new photo
+    GET	        /photos/:id	      photos#show	        display a specific photo
+    GET	        /photos/:id/edit	photos#edit	        return an HTML form for editing a photo
+    PATCH/PUT	  /photos/:id	      photos#update	      update a specific photo
+    DELETE	    /photos/:id	      photos#destroy	    delete a specific photo
+
+
+Q3] Calling private method
+-> Private methods cannot be called with an explicit receiver - the receiver is always self.
+   This means that private methods can be called only in the context of the current object;
+   you cannot invoke another object's private methods
+
+
+Q4] Authentication in Device (Devise)- explain
+->  Devise is a gem which provides a huge variety of authentication methods. It needs to be installed and
+    configured with Rails controllers.
+    Commonly used methods are:
+    authenticate_user!
+    current_user
+    user_signed_in?
+    sign_in(@user)
+    sign_out(@user)
+    user_session
+
+
+
+Q5] Explain polymorphic model?
+-> It's where an ActiveRecord model can potentially belong to more than one other kind of model record.
+   So the single instance of your car belongs to you, a person, whereas other cars may individually belong
+   to a car lot, a business.
+
+Q6. How would you create custom validations that can be utilized across Models?
+->  Create a new class customValidator which inherits from ActiveModel:validator
+    Write all validations in this class
+    use validates_with customValidator for corresponding Models
+
+Q7. Can you call a private method from outside a Class?
+-> NO. Private methods cannot be called with an explicit receiver - the receiver is always self.
+   This means that private methods can be called only in the context of the current object;
+   you cannot invoke another object's private methods.
+
+
+
+Q8. Rails logs display [FILTERED] in the logs when dealing with passwords. How does it do that?
+    And how can you add other fields so that it does not appear in the log files.
+->  We can explicitly add filters to filters = Rails.application.config.filter_parameters
+
+
+Q9. has_many :through versus has_and_belongs_to_many ?
+-> class Person < ActiveRecord::Base
+      has_many :workouts
+    end
+
+    class Workout < ActiveRecord::Base
+      belongs_to :person
+      has_and_belongs_to_many :exercises
+    end
+
+    class Exercise < ActiveRecord::Base
+      has_and_belongs_to_many :workouts
+    end
+-----------------------------------------------------------------
+
+    class Physician < ApplicationRecord
+      has_many :appointments
+      has_many :patients, through: :appointments
+    end
+
+    class Appointment < ApplicationRecord
+      belongs_to :physician
+      belongs_to :patient
+    end
+
+    class Patient < ApplicationRecord
+      has_many :appointments
+      has_many :physicians, through: :appointments
+    end
+
+Q10. Encrypted files vs Encrypted file system
+-> Information available here: https://dhinesh88.wordpress.com/2013/10/24/encryptdecrypt-file-in-ruby/
+
+
+Q11. Proc vs lambda
+-> Here is a summary of how procs and lambdas are different:
+
+  Lambdas are defined with -> {} and procs with Proc.new {}.
+  Procs return from the current method, while lambdas return from the lambda itself.
+  Procs don’t care about the correct number of arguments, while lambdas will raise an exception.
+  Taking a look at this list, we can see that lambdas are a lot closer to a regular method than procs are.
+
+  Closures
+  Ruby procs & lambdas also have another special attribute. When you create a Ruby proc, it captures the current execution
+  scope with it. This concept, which is sometimes called closure, means that a proc will carry with it values like
+  local variables and methods from the context where it was defined. Procs access the variables from the place where
+  they are defined. (Can be outside the method scope.)
+
+
+Q12. Have you used meta programming?
+-> Metaprogramming is a technique by which you can write code that writes code by itself dynamically at runtime.
+   This means you can define methods and classes during runtime. Crazy, right? In a nutshell, using metaprogramming
+   you can reopen and modify classes, catch methods that don’t exist and create them on the fly, create code that is
+   DRY by avoiding repetitions, and more.
+
+Q13. Difference between Module and Class in Ruby
+-> We can include multiple modules but inherit from only 1 class.
+  Modules cannot be instantiated but Classes can be instantiated.
+  Modules are inherited before parent classes.
+
+Q14. How do you make an object immutable in Ruby?
+->   Using the .freeze method
+
+
+Q15. Are constants immutable in Ruby?
+->    Symbols and numbers are immutable in Ruby.
+      Constants are defined with first letter in upper case.
+      Notice that you can’t define constants inside a method.
+
+      By default, Constants are mutable. They can be modified. The program runs fine but we'll get a warning.
+      Constants can be made immutable using a .freeze method.
+
+Q16. Explain polymorphic associations table structure?
+-> It's where an ActiveRecord model can potentially belong to more than one other kind of model record.
+   So the single instance of your car belongs to you, a person, whereas other cars may individually belong
+   to a car lot, a business.
+
+
+Q17] Can you explain the Garbage Collection progress?
+-> Ruby uses GC to collect unused objects automatically.
+   Thanks to GC, Ruby programmers do not need to release objects manually,
+   and do not need to worry about bugs from object releasing.
+
+Q18] How do you call a private method?
+-> Private methods cannot be called with an explicit receiver - the receiver is always self.
+   This means that private methods can be called only in the context of the current object;
+   you cannot invoke another object's private methods.
+
+
+Q19] What is the difference between strings and symbols in Ruby?
+->  Symbols are immutable by default. Strings are mutable by default. (This might change in Ruby 3)
+
+
+Q20] If you need to add a monkey patch to Rails code, where would you place it?
+->  Monkey patching usually refers to changing the meaning of the core functions in built in Classes.
+    Usually make a special file called monkey_patches.rb and put it in config/initializers
+    or in a misc folder in my Rails app so if theres ever a conflict I know where to look.
+
+
+Q21] Rails logs display [FILTERED] in the logs when dealing with passwords. How does it do that? And how can you
+     add other fields so that it does not appear in the log files.
+-> We can explicitly add filters to filters = Rails.application.config.filter_parameters
+
+
+Q22] What are polymorphic associations?
+-> It's where an ActiveRecord model can potentially belong to more than one other kind of model record.
+   So the single instance of your car belongs to you, a person, whereas other cars may individually belong
+   to a car lot, a business.
+
+
+Q23] When would you use has_and_belongs_to_many and has_many :through
+-> has_and_belongs_to_many is useful when two models can be related directly.
+   Example. Workout and Exercise Models in Gym Database
+   has_many :through is useful when two models are connected via a third model.
+   Example. Doctor and Patient models are connected via Appointment model in a Hospital Database.
+
+Q24] Explain what is meta programming? Have you used it anywhere?
+-> Writing Ruby code that can create classes or methods at run time. I haven't used it yet.
+
+
+Q25] Given a method containing a Proc having a return statement and a method containing a lambda
+     with a return statement. What is the difference when we call these two methods?
+-> Procs return from the current method, while lambdas return from the lambda itself.
+
+    def call_proc
+      puts "Before proc"
+      my_proc = Proc.new { return 2 }
+      my_proc.call
+      puts "After proc"
+    end
+
+    p call_proc
+    # Prints "Before proc" but not "After proc"
+
+    def call_lambda
+      puts "Before lambda"
+      my_new_lambda = -> { return 2 }
+      my_new_lambda.call
+      puts "After lambda"
+    end
+
+    p call_lambda
+    # Prints "Before lambda" and also "After lambda"
+
+Q26] How would you go about testing an API?
+-> Information available on: http://matthewlehner.net/rails-api-testing-guidelines/
+
+Q27] What are concerns in Rails?
+-> The Concern is a tool provided by the ActiveSupport lib for including modules in classes, creating mixins.
+    module Emailable
+      include ActiveSupport::Concern
+      def deliver(email)
+        # send email here...
+      end
+    end
+
+    class Document
+      include Emailable
+      def archive
+        @archived = true
+        deliver({to: 'me@mydomain.com', subject: 'Document archived', body: @content})
+      end
+    end
+
+Q28] What is singleton design Pattern in Ruby?
+-> Singleton is a design pattern that restricts instantiation of a class to only one instance that
+   is globally available. It is useful when you need that instance to be accessible in different parts
+   of the application, usually for logging functionality, communication with external systems,
+   database access, etc.
+    More info available on: https://dalibornasevic.com/posts/9-ruby-singleton-pattern-again
+
+Q29] What is rake?
+-> Rake is Ruby Make, a standalone Ruby utility that replaces the Unix utility ‘make’, and uses a ‘Rakefile’
+   and .rake files to build up a list of tasks. In Rails, Rake is used for common administration tasks,
+   especially sophisticated ones that build off of each other.
+     You can get a list of Rake tasks available to you, which will often depend on your current directory,
+   by typing rake --tasks. Each task has a description, and should help you find the thing you need.
+
+   The migration requires that we migrate, that is, run some Ruby code (living in that
+   20100209025147_create_high_scores.rb) to modify the schema of our database. Which database?
+   The sqlite3 database that Rails will create for you when we run the rake db:migrate command.
+
+Q30] What is testing in rails?
+->   2.1 Rails Sets up for Testing from the Word Go
+     Rails creates a test directory for you as soon as you create a Rails project using rails new application_name.
+     If you list the contents of this directory then you shall see:
+
+$ ls -F test
+controllers/           helpers/               mailers/               system/                test_helper.rb
+fixtures/              integration/           models/                application_system_test_case.rb
+ The helpers, mailers, and models directories are meant to hold tests for view helpers, mailers, and models,
+ respectively. The controllers directory is meant to hold tests for controllers, routes, and views.
+ The integration directory is meant to hold tests for interactions between controllers.
+
+    The system test directory holds system tests, which are used for full browser testing of your application.
+    System tests allow you to test your application the way your users experience it and help you test your
+    JavaScript as well. System tests inherit from Capybara and perform in browser tests for your application.
+
+    Fixtures are a way of organizing test data; they reside in the fixtures directory.
+    A jobs directory will also be created when an associated test is first generated.
+    The test_helper.rb file holds the default configuration for your tests.
+    The application_system_test_case.rb holds the default configuration for your system tests.
+
+Q31] What is CSRF. How is it handled in rails?
+-> This attack method works by including malicious code or a link in a page that accesses a web application
+   that the user is believed to have authenticated.
+   If the session for that web application has not timed out, an attacker may execute unauthorized commands.
