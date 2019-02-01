@@ -6,7 +6,7 @@ class NthFibonacci
     while arr.length < n
       arr << arr[arr.length-1]+arr[arr.length-2]
     end
-    arr
+    arr.last
   end
 end
 

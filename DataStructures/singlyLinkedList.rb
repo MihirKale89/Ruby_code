@@ -188,7 +188,7 @@ class SinglyLinkedList
     else
       print "\nElements in Linked List : "
       temp = @front
-      while temp != @rear
+      while temp != nil
         print "#{temp.data} "
         temp = temp.next
       end
@@ -197,8 +197,24 @@ class SinglyLinkedList
   end
 
   def findAtIndexFromRear(index)
-    req_index = findLength - index
+    req_index = findLength - index + 1
     findAtIndex(req_index)
+  end
+
+  def reverse
+    # @front = 1->2->3->nil
+    return nil if @front.nil?
+    prev = nil
+    curr = @front # 1->2->3->nil
+    @rear = curr # 1->2->3->nil
+
+    while(curr != nil)
+      temp = curr.next # 2->3->nil  3->nil     nil
+      curr.next = prev # nil        1->nil     2->1->nil
+      prev = curr      # 1->nil     2->1->nil  3->2->1->nil
+      curr = temp      # 2->3->nil  3->nil     nil 
+    end
+    @front = prev
   end
 end
 
@@ -220,6 +236,8 @@ sll.deleteAtRear
 sll.deleteAtIndex(5)
 sll.deleteAtIndex(4)
 sll.displayLinkedList
+sll.reverse
+sll.displayLinkedList
 
-puts "The data at index 3 is #{sll.findAtIndex(3)}"
-puts "The data at index 2 from rear is #{sll.findAtIndexFromRear(2)}"
+puts "\n The data at index 3 is #{sll.findAtIndex(3)}"
+puts "\n The data at index 2 from rear is #{sll.findAtIndexFromRear(2)}"
