@@ -1,5 +1,5 @@
 # Find row index with max one in n * n matrix where
-# each row is sorted an only has 0s and 1s
+# each row is sorted and only has 0s and 1s
 require 'matrix'
 
 class MaxOnesSortedArray
