@@ -19,9 +19,7 @@ end
 
 def helper(digits, index, dict, result, arr)
   if index == digits.length
-    str = ""
-    arr.each { |chr| str << chr }
-    result << str
+    result << arr.join
     return
   end
   candidates = dict[digits[index]]
@@ -32,6 +30,7 @@ def helper(digits, index, dict, result, arr)
 end
 
 p letter_combinations("23")
+p letter_combinations("2")
 #
 # public List<String> letterCombinations(String digits) {
 #     HashMap<Character, char[]> dict = new HashMap<Character, char[]>();

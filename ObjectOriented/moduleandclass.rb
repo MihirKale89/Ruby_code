@@ -18,6 +18,9 @@ class How_do_you_do
   def greet_how_do_you_do
     p "How do you do?"
   end
+  def greet_hello
+    p "Hellow!"
+  end
 end
 
 hdyd = How_do_you_do.new
