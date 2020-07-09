@@ -1,9 +1,9 @@
-# File:  tc_simple_number.rb
+# File:  time_processor.rb
 
-require_relative "simple_number"
+require_relative "time_processor"
 require "test/unit"
 
-class TestSimpleNumber < Test::Unit::TestCase
+class TestTimeProcessor < Test::Unit::TestCase
 
   def test_simple
     assert_equal(4, SimpleNumber.new(2).add(2) )
