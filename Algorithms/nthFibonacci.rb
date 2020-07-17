@@ -1,14 +1,17 @@
 class NthFibonacci
   def findFibonacciTerm(n)
-    arr = Array.new()
-    arr << 0
-    arr << 1
-    while arr.length < n
-      arr << arr[arr.length-1]+arr[arr.length-2]
+    return 0 if n == 1
+    return 1 if n == 2
+    prev_1 = 1
+    prev_2 = 0
+    fib = 0
+    (n-2).times do
+      fib = prev_1+prev_2
+      prev_2, prev_1 = prev_1, fib
     end
-    arr.last
+    fib
   end
 end
 
 nf = NthFibonacci.new()
-p nf.findFibonacciTerm(20)
+p nf.findFibonacciTerm(5)
