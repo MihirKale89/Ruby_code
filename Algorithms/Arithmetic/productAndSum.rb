@@ -37,4 +37,4 @@ class ProductAndSum
 end
 
 ps = ProductAndSum.new
-ps.subtract_product_and_sum(234)
+p ps.subtract_product_and_sum(234)
