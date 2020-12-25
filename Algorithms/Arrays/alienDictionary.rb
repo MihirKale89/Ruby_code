@@ -42,23 +42,23 @@ All characters in words[i] and order are English lowercase
 class AlienDictionary
   def is_alien_sorted(words, order)
     (0...words.length - 1).each do |i|
-        a = words[i][0]
-        b = words[i + 1][0]
-        j = 1
-        while a == b && words[i] != words[i+1]
-            a = words[i][j]
-            b = words[i + 1][j]
-            j += 1
-        end
-        return false if b.nil?
-        return false if a && order.index(a) > order.index(b)
+      a = words[i][0]
+      b = words[i + 1][0]
+      j = 1
+      while a == b && words[i] != words[i+1]
+        a = words[i][j]
+        b = words[i + 1][j]
+        j += 1
+      end
+      return false if b.nil?
+      return false if a && order.index(a) > order.index(b)
     end
 
     true
   end
 end
 
-words = ["word","world","row"]
-order = "worldabcefghijkmnpqstuvxyz"
+words = %w[word world row]
+order = 'worldabcefghijkmnpqstuvxyz'
 ad = AlienDictionary.new
 p ad.is_alien_sorted(words, order)
